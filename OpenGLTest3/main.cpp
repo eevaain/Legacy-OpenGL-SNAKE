@@ -58,7 +58,6 @@ int main(int argc, char** argv) // ???
 	// wait do we assume that the parameters (int key, int, int) are 
 	// already included here??? yooo??? 
 	// wait so at the end of glutSpecialFunc, then keyboard_callback is invoked?
-	// instead of the function being called immediately, it is called in the future
 	glutSpecialFunc(keyboard_callback);
 	// callbacks are a way to ensure certain code doesnt run until
 	// other code is done running
@@ -85,6 +84,7 @@ void display_callback()
 	glClear(GL_COLOR_BUFFER_BIT);
 	drawGrid();
 	drawSnake();
+	drawFood();
 	glutSwapBuffers();//puts the thing on the screen using double buffering
 	// so when one frame is processing onto the screen, another frame is 
 	// already put on. goal: always have a frame present at the front. 

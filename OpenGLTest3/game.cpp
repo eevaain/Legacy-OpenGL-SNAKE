@@ -71,13 +71,12 @@ void drawFood()
 	// remember food can only be drawn ONCE SNAKE EATS IT
 
 	if (food)
-	{
 		//'random' void function is invoked here
 		random(foodX, foodY); // if food true then pos of food change
-		food = false; // immediately set to false after
-		// this draws the single unit of food?
-		glRectf(foodX, foodY, foodX + 1, foodY + 1);
-	}
+	food = false; // immediately set to false after
+	// this draws the single unit of food?
+	glColor3f(1.0, 0.0, 0.0);
+	glRectf(foodX, foodY, foodX + 1, foodY + 1);
 }
 
 void drawSnake()
@@ -101,6 +100,15 @@ void drawSnake()
 	{
 		gameOver=true;
 	}
+
+	// make collision detection if snake hits food it means it ate food
+	// meaning score + 1 and pos of food must be reset
+	// so if head of snake and food are OVERLAPPING then run 
+
+	if (posX == foodX && posY == foodY)
+	{
+		food = true;
+	}	
 }
 
 void random(int &x, int &y)
@@ -111,7 +119,7 @@ void random(int &x, int &y)
 	// within 1-38, inclusive
 	//we want to make sure random number is diff everyimt
 	// for that we use computer time
-	srand(int(NULL));
+	srand(time(NULL));
 	x = _min + rand() & (_maxX - _min);
 	y = _min + rand() & (_maxY - _min);
 }
