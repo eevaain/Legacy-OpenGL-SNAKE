@@ -3,6 +3,12 @@
 #include "game.h"
 
 int gridX, gridY;
+short sDirection = RIGHT;
+
+extern bool gameOver;
+// make variables to track position of snake
+// make init pos at cenetre of screen
+int posX = 20, posY = 20;
 
 void initGrid(int x, int y)
 {
@@ -50,4 +56,27 @@ void unit(int x, int y)
 		glVertex2f(x + 1, y + 1);
 		glVertex2f(x, y + 1);
 	glEnd();
+}
+
+void drawSnake()
+{
+	// results of condition casing set in main.cpp (but gotta fully
+	// understand how that works first) b4 i move onto this part
+	if (sDirection == UP)
+		posY++;
+	else if (sDirection == DOWN)
+		posY--;
+	else if (sDirection == RIGHT)
+		posX++;
+	else if (sDirection == LEFT)
+		posX--;
+	
+	glRectd(posX, posY, posX + 1, posY + 1);
+
+	//now check if snake is "drawn" in the red area:
+	// remember gridX - 1 = 39
+	if (posX == 0 || posX == gridX - 1 || posY == 0 || posY == gridY - 1)
+	{
+		gameOver=true;
+	}
 }
