@@ -1,9 +1,15 @@
 #include <GL/glut.h>
 #include <GL/gl.h>
 #include "game.h"
+#include <ctime>
+
 
 int gridX, gridY;
 short sDirection = RIGHT;
+
+
+bool food = true;
+int foodX, foodY;
 
 extern bool gameOver;
 // make variables to track position of snake
@@ -58,6 +64,22 @@ void unit(int x, int y)
 	glEnd();
 }
 
+void drawFood()
+{
+	// food will be drawn in random position from 1-38 since 0 & 39 are boundaries
+	// we need to get two random numbers -> random coord x and random y
+	// remember food can only be drawn ONCE SNAKE EATS IT
+
+	if (food)
+	{
+		//'random' void function is invoked here
+		random(foodX, foodY); // if food true then pos of food change
+		food = false; // immediately set to false after
+		// this draws the single unit of food?
+		glRectf(foodX, foodY, foodX + 1, foodY + 1);
+	}
+}
+
 void drawSnake()
 {
 	// results of condition casing set in main.cpp (but gotta fully
@@ -70,7 +92,7 @@ void drawSnake()
 		posX++;
 	else if (sDirection == LEFT)
 		posX--;
-	
+	glColor3f(0.0, 1.0, 0.0);
 	glRectd(posX, posY, posX + 1, posY + 1);
 
 	//now check if snake is "drawn" in the red area:
@@ -79,4 +101,17 @@ void drawSnake()
 	{
 		gameOver=true;
 	}
+}
+
+void random(int &x, int &y)
+{
+	int _maxX = gridX - 2; //38 units horizontally
+	int _maxY = gridY - 2; //38 units vertically
+	int _min = 1; // value of 1 because minimum range spawn of food must be
+	// within 1-38, inclusive
+	//we want to make sure random number is diff everyimt
+	// for that we use computer time
+	srand(int(NULL));
+	x = _min + rand() & (_maxX - _min);
+	y = _min + rand() & (_maxY - _min);
 }

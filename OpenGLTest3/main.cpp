@@ -98,7 +98,7 @@ void display_callback()
 
 	if (gameOver)
 	{
-		// had to add in L because my windows API expects wide str
+		// had to add in L because my win32 API expects wide str
 		MessageBox(NULL, L"Your Score : ", L"GAME OVER", 0);
 		exit(0);
 	}

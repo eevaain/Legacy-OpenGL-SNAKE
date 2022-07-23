@@ -9,5 +9,7 @@
 void initGrid(int, int);
 void drawGrid();
 void drawSnake(); 
+void drawFood();
+void random(int&, int&) //wtf does int& mean
 
 #endif
