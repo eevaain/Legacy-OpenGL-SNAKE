@@ -2,9 +2,11 @@
 #include <GL/gl.h>
 #include "game.h"
 #include <ctime>
+#include <iostream>
 
 
 int gridX, gridY;
+int snake_length = 4; // init length of snake
 short sDirection = RIGHT;
 
 
@@ -12,9 +14,13 @@ bool food = true;
 int foodX, foodY;
 
 extern bool gameOver;
-// make variables to track position of snake
+extern int score;
+
 // make init pos at cenetre of screen
-int posX = 20, posY = 20;
+// we make arrays of length 60 
+// all these values below represent positions of init snake body pixels
+int posX[60] = { 12,12,12,12 }, posY[60] = { 12,11,10,9 };
+
 
 void initGrid(int x, int y)
 {
@@ -39,12 +45,13 @@ void drawGrid()
 void unit(int x, int y)
 {   // between glBegin and glEnd we draw all our stuff here
 	
+	//defining the border
 	// if x coord is 0 or y coord is 0 or x coord is at end of screen
 	// or y coord is at end of screen
 	if (x == 0 || y == 0 || x == gridX - 1 || y == gridY - 1)
 	{
-		glLineWidth(3.0);
-		glColor3f(1.0, 0.0, 0.0);
+		glColor3f(0.0, 1.0, 0.0);
+		glRectf(x, y, x + 1, y + 1);
 	}
 	else
 	{
@@ -75,43 +82,81 @@ void drawFood()
 		random(foodX, foodY); // if food true then pos of food change
 	food = false; // immediately set to false after
 	// this draws the single unit of food?
-	glColor3f(1.0, 0.0, 0.0);
+	glColor3f(1.0, 0.0, 0.0); // color of food
 	glRectf(foodX, foodY, foodX + 1, foodY + 1);
 }
 
 void drawSnake()
 {
+	// something to do with 3rd element becoming 2nd element and then ascending
+	// or descending moving positions... gotta replay that part
+	for (int i = snake_length - 1; i > 0; i--)
+	{
+		posX[i] = posX[i - 1];
+		posY[i] = posY[i - 1];
+		// when the snake moves, the body behind it must decrement
+		// while it increments in the direction it moves in. 
+
+	
+	}
 	// results of condition casing set in main.cpp (but gotta fully
 	// understand how that works first) b4 i move onto this part
 	if (sDirection == UP)
-		posY++;
+		posY[0]++;
 	else if (sDirection == DOWN)
-		posY--;
+		posY[0]--;
 	else if (sDirection == RIGHT)
-		posX++;
+		posX[0]++;
 	else if (sDirection == LEFT)
-		posX--;
-	glColor3f(0.0, 1.0, 0.0);
-	glRectd(posX, posY, posX + 1, posY + 1);
+		posX[0]--;
+
+	for (int i = 0; i < snake_length; i++)
+	{
+
+		// remember cus i starts at index 0 
+		if (posX[0] == posX[i + 1] && posY[0] == posY[i + 1])
+			gameOver = true;
+
+		if (i == 0)
+			glColor3f(0.0, 1.0, 0.0);
+		else
+			glColor3f(0.0, 1.0, 0.0);
+		glRectd(posX[i], posY[i], posX[i] + 1, posY[i] + 1);
+
+
+	
+	}
 
 	//now check if snake is "drawn" in the red area:
 	// remember gridX - 1 = 39
-	if (posX == 0 || posX == gridX - 1 || posY == 0 || posY == gridY - 1)
-	{
-		gameOver=true;
-	}
 
+	// ep 7: WE NEED COLLISION DETECTION FOR HEAD WITH BORDER
+	// index 0 is the head element
+	if (posX[0] == 0 || posX[0] == gridX - 1 || posY[0] == 0 || posY[0] == gridY - 1)
+		gameOver=true;
+	
 	// make collision detection if snake hits food it means it ate food
 	// meaning score + 1 and pos of food must be reset
 	// so if head of snake and food are OVERLAPPING then run 
-
-	if (posX == foodX && posY == foodY)
+	// we want to check collision of HEAD and FOOD
+	if (posX[0] == foodX && posY[0] == foodY)
 	{
+		score++;
+		snake_length++;
+		if (snake_length > MAX)
+			snake_length = MAX;
 		food = true;
-	}	
+
+	}
+
+	//if (posX[0] == 6)
+		//gameOver = true;
+	// ^^ so this means if head pos is at x= 6, then stop game. 
+
 }
 
-void random(int &x, int &y)
+// '&' takes "arguments by reference"
+void random(int &x, int &y) // what do the &s do??
 {
 	int _maxX = gridX - 2; //38 units horizontally
 	int _maxY = gridY - 2; //38 units vertically
@@ -120,6 +165,18 @@ void random(int &x, int &y)
 	//we want to make sure random number is diff everyimt
 	// for that we use computer time
 	srand(time(NULL));
-	x = _min + rand() & (_maxX - _min);
-	y = _min + rand() & (_maxY - _min);
+	x = _min + rand() % (_maxX - _min);
+	//std::cout << x << std::endl;
+	y = _min + rand() % (_maxY - _min);
+	//std::cout << y << std::endl;
 }
+/// OHHH BEFORE I MISTYPED AND PUT '&' INSTEAD OF '%'
+
+
+/// make init pos at cenetre of screen
+//int posX = 20, posY = 20;
+// ^^ this was once initial position of single cube when we were
+// first testing but now we can make an entire snake body so we use arrays
+
+// update: from cube -> snake : had to change how we draw the snake 
+// and need to change collision detection

@@ -1,14 +1,17 @@
 // REMEMBER FILE HAS TO BE CALLED MAIN TO LINK OTHER SHITS
+// IN SOLUTION SETTINGS GO TO ADVANCED AN ENABLE MULTI-BYTE CHARACTER SET
 #include "game.h"
 #include <GL/freeglut.h> // HOLY SHIT I FIXED IT OK SO I NEEDED THIS!!!
 #include <GL/glut.h>
+#include <stdlib.h>
+#include <iostream>
 
 //make some constants 
-#define COLUMNS 40
-#define ROWS 40
+#define COLUMNS 25
+#define ROWS 25
 
 //define constant for FPS
-#define FPS 10
+#define FPS 7
 
 // extern is used when refering to variables in another file
 // we use short cus we dont need a 32 bit integer
@@ -16,6 +19,7 @@ extern short sDirection;
 //^^ still gotta fully understand what extern does
 bool gameOver = false;
 
+int score = 0;
 
 
 // we write this function definition so that we can write its body
@@ -98,11 +102,16 @@ void display_callback()
 
 	if (gameOver)
 	{
+		// 10 char = 10 bytes
+		char _score[10];
+		_itoa_s(score, _score, 10);
+		char text[50] = "Your score: ";
+		strcat_s(text, _score);
 		// had to add in L because my win32 API expects wide str
-		MessageBox(NULL, L"Your Score : ", L"GAME OVER", 0);
+		MessageBox(NULL, text, "GAME OVER", 0);
 		exit(0);
 	}
-
+	//std::cout << score << std::endl;
 }
 
 void reshape_callback(int w, int h)
