@@ -3,8 +3,6 @@ Followed this tutorial: https://www.youtube.com/watch?v=6Miai_t_ksw&list=PLWzp0B
 
 - Added my own collision detection with snake bumping into itself as well as a few other small things
 - Learned significance of Double Frame Buffers, callback functions, taking arguments by reference
-- 
 
 
-
-![image](https://user-images.githubusercontent.com/62809897/180628192-97690da6-9db2-44a0-91d2-95d3ee0cb78e.png)
+![ezgif-3-4a24c91c0b](https://user-images.githubusercontent.com/62809897/180628218-18504688-b729-4eff-a1d3-6f6bebc8401a.gif)
