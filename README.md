@@ -15,4 +15,4 @@ intentions:
   with code rather than sit on my ass and write monkey lizard brain markup frontend code (sorry frontend devs)
 
 - i wanted to get better at low-level programming -> uncover the black box behind computer graphics. 
-- i wanted to make snake in 6502 assembly on my homebrew computer but i had no clue how to approach making it. 
+- i wanted to make snake in 6502 assembly on my homebrew computer but i had no clue how to approach making it. now i somewhat have a clue :)
