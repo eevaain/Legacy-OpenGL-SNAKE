@@ -114,6 +114,10 @@ void drawSnake()
 	{
 
 		// remember cus i starts at index 0 
+		// if posX[i] starts at 0 its not going to work because 
+		// the snake head position will immediately collide with itself
+		// so it has to be ANY OTHER POSITION other than posX[0] which means 1,2,3...
+		// and the same goes for posY[i]
 		if (posX[0] == posX[i + 1] && posY[0] == posY[i + 1])
 			gameOver = true;
 
