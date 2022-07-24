@@ -1,4 +1,5 @@
-simple snake game i made in openGL. 
+## 2-D Snake in OpenGL c++ 
+simple snake game i made in openGL GLUT. 
 Followed this tutorial: https://www.youtube.com/watch?v=6Miai_t_ksw&list=PLWzp0Bbyy_3gXc0YBxiIR9Tb5KfmLSL_C
 
 - Added my own collision detection with snake bumping into itself as well as a few other small things
