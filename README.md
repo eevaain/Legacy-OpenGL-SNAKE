@@ -11,7 +11,7 @@ Followed this tutorial: https://www.youtube.com/watch?v=6Miai_t_ksw&list=PLWzp0B
 
 intentions:
 - i'm an amateur programmer and i can barely consider myself a full-stack developer. wanted to start developing a deeper competency in problem-solving
-  with code rather than sit on my ass and write monkey frontend code (sorry frontend devs)
+  with code rather than sit on my ass and write monkey lizard brain markup frontend code (sorry frontend devs)
 
 - i wanted to get better at low-level programming -> uncover the black box behind computer graphics. 
 - i wanted to make snake in 6502 assembly on my homebrew computer but i had no clue how to approach making it. 
