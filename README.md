@@ -7,3 +7,10 @@ Followed this tutorial: https://www.youtube.com/watch?v=6Miai_t_ksw&list=PLWzp0B
 
 
 ![ezgif-3-4a24c91c0b](https://user-images.githubusercontent.com/62809897/180628218-18504688-b729-4eff-a1d3-6f6bebc8401a.gif)
+
+
+intentions:
+
+- i wanted to get better at low-level programming -> uncover the black box behind computer graphics
+
+- i wanted to make snake in 6502 assembly on my homebrew computer but i had no clue how to approach making it. 
