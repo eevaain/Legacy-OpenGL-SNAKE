@@ -1,6 +1,6 @@
 ## 2-D Snake in Legacy OpenGL C++
 
-Simple snake game i made in openGL GLUT. 
+Simple snake game i made in openGL freeGLUT (version of glut that is still maintained). 
 Followed this tutorial: https://www.youtube.com/watch?v=6Miai_t_ksw&list=PLWzp0Bbyy_3gXc0YBxiIR9Tb5KfmLSL_C
 
 - Added my own collision detection with snake bumping into itself as well as a few other small things.
