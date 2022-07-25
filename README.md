@@ -1,4 +1,4 @@
-## 2-D Snake in OpenGL C++
+## 2-D Snake in Legacy OpenGL C++
 
 Simple snake game i made in openGL GLUT. 
 Followed this tutorial: https://www.youtube.com/watch?v=6Miai_t_ksw&list=PLWzp0Bbyy_3gXc0YBxiIR9Tb5KfmLSL_C
